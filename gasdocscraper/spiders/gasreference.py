@@ -45,14 +45,14 @@ def get_properties(response):
     cells = response.xpath('//table[contains(@class, "property") and contains(@class, "members") ]//td')
     col1, col2, col3 = cells[::3], cells[1::3], cells[2::3]
     properties = col1.xpath('./code')
-    types = col2.xpath('./code//text()')
+    types = col2.xpath('./code')
     descriptions = col3
     for ps, t, ds in zip(properties, types, descriptions):
         p = ''.join(ps.xpath('.//text()').extract())
-        t = t.extract()
         d = ''.join(ds.xpath('.//text()').extract())
         yield {'name': p,
-               'type': t,
+               'type': ''.join(t.xpath('.//text()').extract()),
+               'url': t.xpath('.//a/@href').extract_first() or "",
                'description': d}
 
 

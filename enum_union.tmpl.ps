@@ -1,0 +1,7 @@
+data {{this.name}} = {% for c in this.constructors %}
+  {%- if loop.index0 == 0 %}
+    {{ c }}
+  {% else -%}
+  | {{ c }}
+  {% endif -%}
+{%- endfor %}

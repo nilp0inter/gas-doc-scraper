@@ -7,6 +7,9 @@ with data obtained from:
                         ** DO NOT MODIFY **
 
 --}
+module {{ this.path }} (
+  {{ this.exported|join(',\n  ') }}
+) where
 {% for e in module.declarations %}
-{{ e.render_ps_part(api=api, module=module) }}
+{{- e.render_ps_part(api=api, module=module) }}
 {% endfor %}

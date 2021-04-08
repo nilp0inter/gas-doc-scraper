@@ -1,0 +1,5 @@
+
+{{ this.name }} :: {{ union.name }} -> {{ foreign_type.name }}
+{%- for c in union.constructors %}
+{{ this.name }} {{ c }} = {{ foreign_constructors[loop.index0].name }}
+{%- endfor %}
